@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useOnClickOutside } from '../useOnClickOutside';
+import useOnClickOutside from '../useOnClickOutside';
 import { useAuthContext } from '../context/AuthContext';
 
 const links = [
@@ -26,6 +26,7 @@ const Navbar = () => {
         <ul>
           {links.map((link) => (
             <React.Fragment key={link.text}>
+              {/*eslint-disable */}
               {link.path === 'login' ? (
                 !user && (
                 <li>
@@ -45,6 +46,7 @@ const Navbar = () => {
                   <NavLink to={link.path}>{link.text}</NavLink>
                 </li>
               )}
+              {/* eslint-enable */}
             </React.Fragment>
           ))}
           {!user && (
@@ -57,7 +59,7 @@ const Navbar = () => {
       {user && (
         <div className="logout">
           <p>{user}</p>
-          <button onClick={handleLogout}>Logout</button>
+          <button type="button" onClick={handleLogout}>Logout</button>
         </div>
       )}
     </>

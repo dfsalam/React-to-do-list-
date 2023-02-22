@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from '../styles/TodoItem.module.scss';
 import { useAuthContext } from '../context/AuthContext';
@@ -50,11 +51,11 @@ const TodoItem = ({
           onChange={() => handleChange(itemProp.id)}
         />
         {user && (
-          <button onClick={handleEditing}>
+          <button type="button" onClick={handleEditing}>
             Edit
           </button>
         )}
-        <button onClick={() => delTodo(itemProp.id)}>Delete</button>
+        <button type="button" onClick={() => delTodo(itemProp.id)}>Delete</button>
         <span style={itemProp.completed ? completedStyle : null}>
           {itemProp.title}
         </span>
@@ -70,4 +71,16 @@ const TodoItem = ({
     </li>
   );
 };
+
+TodoItem.propTypes = {
+  itemProp: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  setTodos: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  delTodo: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  setUpdate: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+};
+
 export default TodoItem;

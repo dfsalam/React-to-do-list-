@@ -1,5 +1,5 @@
 import '../App.css';
-import Header from '../components/Header.jsx';
+import Header from '../components/Header';
 import TodosLogic from '../components/TodosLogic';
 
 const Home = () => (

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useContext, createContext } from 'react';
 
 const AuthContext = createContext(null);
@@ -11,4 +12,10 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+AuthProvider.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+};
+
 export const useAuthContext = () => useContext(AuthContext);

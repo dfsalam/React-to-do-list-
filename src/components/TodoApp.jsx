@@ -6,7 +6,7 @@ import About from '../routes/About';
 import Login from '../routes/Login';
 import Profile from '../routes/Profile';
 import NotMatch from '../routes/NotMatch';
-import ProtectedRoute from './ProtectedRoute.jsx';
+import ProtectedRoute from './ProtectedRoute';
 import Layout from './Layout';
 import SinglePage from '../routes/SinglePage';
 

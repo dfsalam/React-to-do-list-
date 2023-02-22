@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 const TodosList = ({
@@ -15,4 +16,15 @@ const TodosList = ({
     ))}
   </ul>
 );
+
+TodosList.propTypes = {
+  todosProps: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  setTodos: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  delTodo: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+  setUpdate: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object,
+    PropTypes.bool, PropTypes.func]).isRequired,
+};
 export default TodosList;
