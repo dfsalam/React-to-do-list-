@@ -1,13 +1,13 @@
 import '../App.css';
-import Navbar from './Navbar';
 import Header from './Header.jsx'
 import TodosLogic from './TodosLogic';
 const TodoApp = () => {
   return (
-    <div>
-      <Navbar />
-      <Header />
-      <TodosLogic />      
+    <div className="wrapper">
+      <div className="todos">
+        <Header />
+        <TodosLogic />
+      </div>
     </div>
   );
 };
