@@ -1,7 +1,7 @@
-import styles from '../styles/Login.module.scss';
 import { useState } from 'react';
-import { useAuthContext } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+import styles from '../styles/Login.module.scss';
+import { useAuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
