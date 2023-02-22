@@ -1,6 +1,6 @@
 import styles from '../styles/TodoItem.module.scss';
 import { useState } from 'react';
-const TodoItem = ({ itemProp, setTodos, delTodo }) => {
+const TodoItem = ({ itemProp, setTodos, delTodo, setUpdate }) => {
   const [editing, setEditing] = useState(false);
   const completedStyle = {
     fontStyle: 'italic',
@@ -24,9 +24,21 @@ const TodoItem = ({ itemProp, setTodos, delTodo }) => {
   const handleEditing = () => {
     setEditing(true);
   };
+  let viewMode = {};
+  let editMode = {};
+  if (editing) {
+    viewMode.display = 'none';
+  } else {
+    editMode.display = 'none';
+  }
+  const handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      setEditing(false);
+    }
+  };
   return (
     <li className={styles.item}>
-      <div className={styles.content}>
+      <div className={styles.content} style={viewMode}>
         <input type="checkbox"
           checked={itemProp.completed}
           onChange={() => handleChange(itemProp.id)}
@@ -41,6 +53,9 @@ const TodoItem = ({ itemProp, setTodos, delTodo }) => {
       type="text"
       value={itemProp.title}
       className={styles.textInput}
+      style={viewMode}
+      onChange={(e) => setUpdate(e.target.value, itemProp.id)}
+      onKeyDown={handleUpdatedDone}
       />
     </li>
   );
