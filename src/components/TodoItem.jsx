@@ -1,6 +1,8 @@
 import styles from '../styles/TodoItem.module.scss';
 import { useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 const TodoItem = ({ itemProp, setTodos, delTodo, setUpdate }) => {
+  const { user } = useAuthContext();
   const [editing, setEditing] = useState(false);
   const completedStyle = {
     fontStyle: 'italic',
@@ -25,11 +27,13 @@ const TodoItem = ({ itemProp, setTodos, delTodo, setUpdate }) => {
     setEditing(true);
   };
   let viewMode = {};
-  let editMode = {};
+  let editMode = {display: 'none'};
   if (editing) {
     viewMode.display = 'none';
+    editMode.display = 'block';
   } else {
     editMode.display = 'none';
+    viewMode.display = 'flex';
   }
   const handleUpdatedDone = (event) => {
     if (event.key === 'Enter') {
@@ -43,7 +47,11 @@ const TodoItem = ({ itemProp, setTodos, delTodo, setUpdate }) => {
           checked={itemProp.completed}
           onChange={() => handleChange(itemProp.id)}
         />
-        <button onClick={handleEditing}>Edit</button>
+        {user && (
+          <button onClick={handleEditing}>
+            Edit
+          </button>
+        )}
         <button onClick={() => delTodo(itemProp.id)}>Delete</button>
         <span style={itemProp.completed ? completedStyle : null}>
           {itemProp.title}
@@ -53,7 +61,7 @@ const TodoItem = ({ itemProp, setTodos, delTodo, setUpdate }) => {
       type="text"
       value={itemProp.title}
       className={styles.textInput}
-      style={viewMode}
+      style={editMode}
       onChange={(e) => setUpdate(e.target.value, itemProp.id)}
       onKeyDown={handleUpdatedDone}
       />
